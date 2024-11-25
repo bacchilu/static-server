@@ -11,6 +11,7 @@ services:
       - '8000:8000'
     volumes:
       - ./src:/app
+      # - ./tmp/uploads:${UPLOAD_DIRECTORY}
     command: fastapi dev main.py --host 0.0.0.0
 
   prod:
@@ -22,5 +23,7 @@ services:
         - GROUP_ID=${GROUP_ID}
         - UPLOAD_DIRECTORY=${UPLOAD_DIRECTORY}
     ports:
-      - '8000:8000'
+      - '80:8000'
+    volumes:
+      - ./tmp/uploads:${UPLOAD_DIRECTORY}
     command: fastapi run main.py

@@ -6,7 +6,11 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## start
 
-    fastapi dev main.py
+    python3 -m venv ENV
+    source ENV/bin/activate
+    pip3 install -r src/requirements-lock.txt
+
+    fastapi dev src/main.py
 
     curl -X 'POST' \
       'http://127.0.0.1:8000/photos/products/23/PW-11004768_.png' \

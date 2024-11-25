@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 
-UPLOAD_DIRECTORY = "/tmp/uploads"
+UPLOAD_DIRECTORY = os.getenv("UPLOAD_DIRECTORY", "/tmp")
 
 
 async def save_file(file: UploadFile, sub_path: str):

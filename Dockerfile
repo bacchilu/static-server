@@ -3,7 +3,10 @@ LABEL maintainer="Luca Bacchi <bacchilu@gmail.com> (https://github.com/bacchilu)
 
 ARG USER_ID
 ARG GROUP_ID
+ARG UPLOAD_DIRECTORY
 ARG USERNAME=python
+
+ENV UPLOAD_DIRECTORY=${UPLOAD_DIRECTORY}
 
 RUN groupadd -g ${GROUP_ID} ${USERNAME}
 RUN useradd -ms /bin/bash -l -u ${USER_ID} -g ${USERNAME} ${USERNAME}

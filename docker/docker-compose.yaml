@@ -6,12 +6,12 @@ services:
       args:
         - USER_ID=${USER_ID}
         - GROUP_ID=${GROUP_ID}
-        - UPLOAD_DIRECTORY=${UPLOAD_DIRECTORY}
+        - UPLOAD_DIRECTORY=/tmp/uploads
     ports:
       - '8000:8000'
     volumes:
       - ../src:/app
-      - /tmp/uploads:${UPLOAD_DIRECTORY}
+      - ${UPLOAD_DIRECTORY}:/tmp/uploads
     command: fastapi dev main.py --host 0.0.0.0
 
   prod:
@@ -21,9 +21,9 @@ services:
       args:
         - USER_ID=${USER_ID}
         - GROUP_ID=${GROUP_ID}
-        - UPLOAD_DIRECTORY=${UPLOAD_DIRECTORY}
+        - UPLOAD_DIRECTORY=/tmp/uploads
     ports:
       - '80:8000'
     volumes:
-      - /tmp/uploads:${UPLOAD_DIRECTORY}
+      - ${UPLOAD_DIRECTORY}:/tmp/uploads
     command: fastapi run main.py

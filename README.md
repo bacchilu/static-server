@@ -24,12 +24,21 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
-    docker build -t static-server:dev --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` .
-    docker run --rm -it -p 8000:8000 -v ./src/:/app static-server:dev
+### dev
 
-    docker images prune -a
+    docker build -t static-server:dev --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` --build-arg UPLOAD_DIRECTORY=/tmp/uploads -f ./Dockerfile ..
+    docker run --rm -it -p 8000:8000 -v /tmp/uploads:/tmp/uploads static-server:dev fastapi dev main.py --host 0.0.0.0
+
+### prod
+
+    docker build -t static-server:prod --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` --build-arg UPLOAD_DIRECTORY=/tmp/uploads -f ./Dockerfile ..
+    docker run --rm -d -p 80:8000 -v /tmp/uploads:/tmp/uploads static-server:prod fastapi run main.py
+
+### clear
+
+    docker image prune -a
 
 ---
 
-    source UP.sh
+    source UP.sh [DEV | PROD]
     source DOWN.sh

@@ -9,8 +9,7 @@ ARG USERNAME=python
 ENV UPLOAD_DIRECTORY=${UPLOAD_DIRECTORY}
 
 RUN groupadd -g ${GROUP_ID} ${USERNAME}
-RUN useradd -ms /bin/bash -l -u ${USER_ID} -g ${USERNAME} ${USERNAME}
-RUN install -d -m 0755 -o ${USERNAME} -g ${USERNAME} /home/${USERNAME}
+RUN useradd -m -u ${USER_ID} -g ${USERNAME} ${USERNAME}
 
 USER ${USERNAME}
 

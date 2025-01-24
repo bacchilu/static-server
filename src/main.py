@@ -3,13 +3,17 @@ import os
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 
+from s3.s3 import S3
+
 app = FastAPI()
 
 
 UPLOAD_DIRECTORY = os.getenv("UPLOAD_DIRECTORY", "/tmp")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
 
-async def save_file(file: UploadFile, sub_path: str):
+async def save_to_disk(file: UploadFile, sub_path: str):
     assert file.filename is not None
 
     target_directory = os.path.join(UPLOAD_DIRECTORY, sub_path)
@@ -22,11 +26,24 @@ async def save_file(file: UploadFile, sub_path: str):
     return file_location
 
 
+def save_to_s3(file: UploadFile, sub_path: str):
+    assert file.filename is not None
+
+    s3 = S3(
+        aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+    )
+    bucket = s3.get_bucket("life365")
+    file.file.seek(0)
+    bucket.upload_fileobj(file.file, f"{sub_path}/{file.filename}")
+    return f"https://life365.s3.eu-central-1.amazonaws.com/{sub_path}/{file.filename}"
+
+
 @app.post("/{sub_path:path}")
 async def upload_file(sub_path: str = "", file: UploadFile = File(...)):
     if ".." in sub_path or sub_path.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid sub-path")
-    file_location = await save_file(file, sub_path)
+    file_location = await save_to_disk(file, sub_path)
+    save_to_s3(file, sub_path)
     return {"filename": file.filename, "location": file_location}
 
 

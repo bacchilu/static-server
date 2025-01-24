@@ -1,3 +1,4 @@
+import io
 import os
 
 from dotenv import load_dotenv
@@ -20,5 +21,6 @@ if __name__ == "__main__":
     print(list(s3.all()))
 
     bucket = s3.get_bucket("life365")
-    bucket.upload_fileobj("src/s3/main.py", "plain/text", "TEST/test.py")
+    with io.BytesIO(b"Nel mezzo del cammin di nostra vita") as fp:
+        bucket.upload_fileobj(fp, "plain/text", "TEST/test.py")
     bucket.delete_objects("TEST/test.py")

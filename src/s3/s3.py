@@ -24,6 +24,9 @@ class Bucket:
     def delete_objects(self, key: str):
         self.bucket.delete_objects(Delete={"Objects": [{"Key": key}]})
 
+    def download_fileobj(self, key: str, fp: IO[bytes]):
+        self.bucket.download_fileobj(key, fp)
+
     def __str__(self):
         return f"<Bucket name={self.bucket.name}>"
 

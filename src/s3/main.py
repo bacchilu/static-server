@@ -33,4 +33,7 @@ if __name__ == "__main__":
     bucket = s3.get_bucket("life365")
     with rand_open() as fp:
         bucket.upload_fileobj(fp, "TEST/test.py")
+    with io.BytesIO() as fp:
+        bucket.download_fileobj("TEST/test.py", fp)
+        print(fp.getvalue())
     bucket.delete_objects("TEST/test.py")

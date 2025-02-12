@@ -1,8 +1,17 @@
+from dotenv import load_dotenv
 from typing import IO
+import os
 
 from boto3.session import Session
 import magic
 from mypy_boto3_s3.service_resource import _Bucket
+
+
+load_dotenv()
+
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
 
 def guess_content_type(file_obj: IO[bytes]):
@@ -16,6 +25,16 @@ def guess_content_type(file_obj: IO[bytes]):
 class Bucket:
     def __init__(self, bucket: _Bucket):
         self.bucket = bucket
+
+    @classmethod
+    def create_obj(cls, name: str):
+        session = Session(
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            region_name="eu-central-1",
+        )
+        s3 = session.resource("s3")
+        return Bucket(s3.Bucket(name))
 
     def upload_fileobj(self, fp: IO[bytes], key: str):
         extraArgs = {"ACL": "public-read", "ContentType": guess_content_type(fp)}
@@ -32,10 +51,10 @@ class Bucket:
 
 
 class S3:
-    def __init__(self, aws_access_key_id: str, aws_secret_access_key: str):
+    def __init__(self):
         session = Session(
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
             region_name="eu-central-1",
         )
         self.s3 = session.resource("s3")

@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 
-from aws.s3.s3 import S3
+from aws.s3.s3 import Bucket
 
 app = FastAPI()
 
@@ -29,10 +29,7 @@ async def save_to_disk(file: UploadFile, sub_path: str):
 def save_to_s3(file: UploadFile, sub_path: str):
     assert file.filename is not None
 
-    s3 = S3(
-        aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY
-    )
-    bucket = s3.get_bucket("life365")
+    bucket = Bucket.create_obj("life365")
     file.file.seek(0)
     bucket.upload_fileobj(file.file, f"{sub_path}/{file.filename}")
     return f"https://life365.s3.eu-central-1.amazonaws.com/{sub_path}/{file.filename}"

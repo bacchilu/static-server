@@ -18,7 +18,7 @@ def rand_open():
     return random.choice(
         (
             io.BytesIO(b"Nel mezzo del cammin di nostra vita"),
-            open("src/s3/main.py", "rb"),
+            open("src/aws/s3/main.py", "rb"),
         )
     )
 

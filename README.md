@@ -42,3 +42,10 @@ It will be configurable to save data on the host file system or to save data to 
 
     source UP.sh [DEV | PROD]
     source DOWN.sh
+
+## S3
+    pip3 install -r src/aws/s3/requirements.txt
+    python3 -m src.aws.s3.main
+
+    pip3 install -r src/aws/aios3/requirements.txt
+    python3 -m src.aws.aios3.main

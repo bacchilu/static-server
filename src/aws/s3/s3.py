@@ -61,6 +61,3 @@ class S3:
 
     def all(self):
         return (Bucket(b) for b in self.s3.buckets.all())
-
-    def get_bucket(self, name: str):
-        return Bucket(self.s3.Bucket(name))

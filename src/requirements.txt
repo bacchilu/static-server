@@ -1,7 +1,9 @@
 fastapi[standard]
 
-boto3
-boto3-stubs[s3]
-mypy_boto3_s3
+# boto3
+# boto3-stubs[s3]
+# mypy_boto3_s3
+aioboto3
+
 python-dotenv
 python-magic

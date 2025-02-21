@@ -1,5 +1,4 @@
 from contextlib import asynccontextmanager
-import io
 import os
 from typing import IO
 
@@ -39,12 +38,12 @@ class Bucket:
             bucket = await s3.Bucket(name)
             yield cls(bucket)
 
-    async def upload_fileobj(self, fp: io.BytesIO, key: str):
+    async def upload_fileobj(self, fp: IO[bytes], key: str):
         await self.bucket.upload_fileobj(
             fp, key, {"ACL": "public-read", "ContentType": guess_content_type(fp)}
         )
 
-    async def download_fileobj(self, fp: io.BytesIO, key: str):
+    async def download_fileobj(self, fp: IO[bytes], key: str):
         await self.bucket.download_fileobj(key, fp)
 
     async def delete_objects(self, key: str):

@@ -62,3 +62,9 @@ async def get_file_with_path(sub_path: str, filename: str):
     if not os.path.isfile(file_path):
         raise HTTPException(status_code=404, detail="File not found")
     return FileResponse(file_path)
+
+
+@app.delete("/{sub_path:path}")
+async def delete_file_with_path(sub_path: str):
+    if ".." in sub_path or sub_path.startswith("/"):
+        raise HTTPException(status_code=400, detail="Invalid sub-path")

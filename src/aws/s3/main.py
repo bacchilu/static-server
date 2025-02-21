@@ -1,6 +1,6 @@
 import io
 
-from .s3 import Bucket
+from . import Bucket
 
 
 if __name__ == "__main__":

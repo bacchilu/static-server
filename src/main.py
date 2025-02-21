@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 
-from aws.s3.s3 import Bucket
+from aws.s3 import Bucket
 
 app = FastAPI()
 

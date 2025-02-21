@@ -1,7 +1,7 @@
 import asyncio
 import io
 
-from .s3 import Bucket
+from . import Bucket
 
 
 async def go():

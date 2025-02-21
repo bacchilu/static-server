@@ -1,9 +1,11 @@
 from contextlib import asynccontextmanager
 import io
 import os
+from typing import IO
 
 import aioboto3
 from dotenv import load_dotenv
+import magic
 
 
 load_dotenv()
@@ -11,6 +13,14 @@ load_dotenv()
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
+
+
+def guess_content_type(file_obj: IO[bytes]):
+    current_pos = file_obj.tell()
+    chunk = file_obj.read(4096)
+    file_obj.seek(current_pos)
+    mime_type = magic.from_buffer(chunk, mime=True)
+    return mime_type or "application/octet-stream"
 
 
 class Bucket:
@@ -30,7 +40,9 @@ class Bucket:
             yield cls(bucket)
 
     async def upload_fileobj(self, fp: io.BytesIO, key: str):
-        await self.bucket.upload_fileobj(fp, key, {"ACL": "public-read"})
+        await self.bucket.upload_fileobj(
+            fp, key, {"ACL": "public-read", "ContentType": guess_content_type(fp)}
+        )
 
     async def download_fileobj(self, fp: io.BytesIO, key: str):
         await self.bucket.download_fileobj(key, fp)

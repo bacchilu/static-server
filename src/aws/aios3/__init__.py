@@ -20,9 +20,17 @@ class Bucket:
     @classmethod
     @asynccontextmanager
     async def create_obj(
-        cls, name: str, aws_access_key_id: str, aws_secret_access_key: str
+        cls,
+        name: str,
+        aws_access_key_id: str,
+        aws_secret_access_key: str,
+        region_name: str,
     ):
-        session = aioboto3.Session(region_name="eu-central-1")
+        session = aioboto3.Session(
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            region_name=region_name,
+        )
         async with session.resource("s3") as s3:
             bucket = await s3.Bucket(name)
             yield cls(bucket)

@@ -18,11 +18,17 @@ class Bucket:
         self.bucket = bucket
 
     @classmethod
-    def create_obj(cls, name: str, aws_access_key_id: str, aws_secret_access_key: str):
+    def create_obj(
+        cls,
+        name: str,
+        aws_access_key_id: str,
+        aws_secret_access_key: str,
+        region_name: str,
+    ):
         session = Session(
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            region_name="eu-central-1",
+            region_name=region_name,
         )
         s3 = session.resource("s3")
         return Bucket(s3.Bucket(name))
@@ -42,11 +48,13 @@ class Bucket:
 
 
 class S3:
-    def __init__(self, aws_access_key_id: str, aws_secret_access_key: str):
+    def __init__(
+        self, aws_access_key_id: str, aws_secret_access_key: str, region_name: str
+    ):
         session = Session(
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            region_name="eu-central-1",
+            region_name=region_name,
         )
         self.s3 = session.resource("s3")
 

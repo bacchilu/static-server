@@ -1,14 +1,9 @@
-from contextlib import asynccontextmanager
 import os
+from contextlib import asynccontextmanager
 from typing import IO
 
 import aioboto3
-from dotenv import load_dotenv
 import magic
-
-
-load_dotenv()
-
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")

@@ -13,6 +13,7 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - STORAGE=${STORAGE}
+      - S3_BUCKET=${S3_BUCKET}
     volumes:
       - ../src:/app
       - ${UPLOAD_DIRECTORY}:/tmp/uploads
@@ -32,6 +33,7 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - STORAGE=${STORAGE}
+      - S3_BUCKET=${S3_BUCKET}
     volumes:
       - ${UPLOAD_DIRECTORY}:/tmp/uploads
     command: fastapi run main.py

@@ -8,8 +8,11 @@ from . import Bucket
 load_dotenv()
 
 
+S3_BUCKET = "life365"
+
+
 async def go():
-    async with Bucket.create_obj("life365") as bucket:
+    async with Bucket.create_obj(S3_BUCKET) as bucket:
         with io.BytesIO(b"Nel mezzo del cammin di nostra vita") as fp:
             await bucket.upload_fileobj(fp, "TEST/test.py")
         with io.BytesIO() as fp:

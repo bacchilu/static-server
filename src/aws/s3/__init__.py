@@ -1,14 +1,9 @@
-from dotenv import load_dotenv
-from typing import IO
 import os
+from typing import IO
 
-from boto3.session import Session
 import magic
+from boto3.session import Session
 from mypy_boto3_s3.service_resource import _Bucket
-
-
-load_dotenv()
-
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")

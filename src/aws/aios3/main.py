@@ -1,7 +1,11 @@
 import asyncio
 import io
 
+from dotenv import load_dotenv
+
 from . import Bucket
+
+load_dotenv()
 
 
 async def go():

@@ -1,6 +1,10 @@
 import io
 
+from dotenv import load_dotenv
+
 from . import Bucket
+
+load_dotenv()
 
 
 if __name__ == "__main__":

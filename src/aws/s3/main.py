@@ -1,17 +1,20 @@
 import io
+import os
 
 from dotenv import load_dotenv
 
 from . import Bucket
 
 load_dotenv()
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
 
 S3_BUCKET = "life365"
 
 
 if __name__ == "__main__":
-    bucket = Bucket.create_obj(S3_BUCKET)
+    bucket = Bucket.create_obj(S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
     with io.BytesIO(b"Nel mezzo del cammin di nostra vita") as fp:
         bucket.upload_fileobj(fp, "TEST/test.py")
     with io.BytesIO() as fp:

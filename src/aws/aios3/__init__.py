@@ -1,12 +1,8 @@
-import os
 from contextlib import asynccontextmanager
 from typing import IO
 
 import aioboto3
 import magic
-
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
 
 def guess_content_type(file_obj: IO[bytes]):
@@ -23,12 +19,10 @@ class Bucket:
 
     @classmethod
     @asynccontextmanager
-    async def create_obj(cls, name: str):
-        session = aioboto3.Session(
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-            region_name="eu-central-1",
-        )
+    async def create_obj(
+        cls, name: str, aws_access_key_id: str, aws_secret_access_key: str
+    ):
+        session = aioboto3.Session(region_name="eu-central-1")
         async with session.resource("s3") as s3:
             bucket = await s3.Bucket(name)
             yield cls(bucket)

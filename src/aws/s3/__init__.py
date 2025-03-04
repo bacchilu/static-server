@@ -1,12 +1,8 @@
-import os
 from typing import IO
 
 import magic
 from boto3.session import Session
 from mypy_boto3_s3.service_resource import _Bucket
-
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
 
 def guess_content_type(file_obj: IO[bytes]):
@@ -22,10 +18,10 @@ class Bucket:
         self.bucket = bucket
 
     @classmethod
-    def create_obj(cls, name: str):
+    def create_obj(cls, name: str, aws_access_key_id: str, aws_secret_access_key: str):
         session = Session(
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
             region_name="eu-central-1",
         )
         s3 = session.resource("s3")
@@ -46,10 +42,10 @@ class Bucket:
 
 
 class S3:
-    def __init__(self):
+    def __init__(self, aws_access_key_id: str, aws_secret_access_key: str):
         session = Session(
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
             region_name="eu-central-1",
         )
         self.s3 = session.resource("s3")

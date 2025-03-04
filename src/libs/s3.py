@@ -5,8 +5,10 @@ from typing import IO
 from aws.aios3 import Bucket
 
 S3_BUCKET = os.getenv("S3_BUCKET", "life365")
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "XXXXXXXXXXXXXXXXXXXX")
+AWS_SECRET_ACCESS_KEY = os.getenv(
+    "AWS_SECRET_ACCESS_KEY", "YYYYYYYY+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+)
 REGION_NAME = os.getenv("REGION_NAME", "eu-central-1")
 
 

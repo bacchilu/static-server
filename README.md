@@ -4,23 +4,24 @@ I want to implement a configurable static server with a very simple API to store
 
 It will be configurable to save data on the host file system or to save data to AWS S3.
 
-## start
+## start (dev mod)
 
     python3 -m venv ENV
     source ENV/bin/activate
     pip3 install -r src/requirements-lock.txt
 
+    export $(grep -v '^#' docker/.env | xargs)
     fastapi dev src/main.py
 
     curl -X 'POST' \
-      'http://127.0.0.1:8000/photos/products/23/PW-11004768_.png' \
-      -H 'accept: application/json' \
-      -H 'Content-Type: multipart/form-data' \
-      -F 'file=@PW-11004768_.png;type=image/png'
+    'http://0.0.0.0:8000/xxx' \
+    -H 'accept: application/json' \
+    -H 'Content-Type: multipart/form-data' \
+    -F 'file=@KEN2025_ticket_31275276.pdf;type=application/pdf'
 
-    curl -X 'GET' \
-      'http://127.0.0.1:8000/photos/products/23/PW-11004768_.png' \
-      -H 'accept: application/json'
+    curl -X 'DELETE' \
+    'http://0.0.0.0:8000/xxx%2FKEN2025_ticket_31275276.pdf' \
+    -H 'accept: application/json'
 
 ## Docker
 

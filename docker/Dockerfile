@@ -1,8 +1,8 @@
 FROM python:3.13.2
 LABEL maintainer="Luca Bacchi <bacchilu@gmail.com> (https://github.com/bacchilu)"
 
-ARG USER_ID
-ARG GROUP_ID
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 ARG USERNAME=python
 ARG GROUPNAME=python
 

@@ -25,15 +25,19 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
-    docker build -t static-server -f ./docker/Dockerfile .
+    docker build -t bacchilu/static-server -f ./docker/Dockerfile .
 
 ### dev
 
-    docker run --rm -it -p 8000:8000 --env-file docker/.env static-server fastapi dev main.py --host 0.0.0.0
+    docker run --rm -it -p 8000:8000 --env-file docker/.env bacchilu/static-server fastapi dev main.py --host 0.0.0.0
 
 ### prod
 
-    docker run --rm -it -p 80:8000 --env-file docker/.env static-server
+    docker run --rm -it -p 80:8000 --env-file docker/.env bacchilu/static-server
+
+### Deploy DockerHub
+
+    docker push bacchilu/static-server
 
 ### clear
 

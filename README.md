@@ -25,15 +25,15 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
+    docker build -t static-server -f ./docker/Dockerfile .
+
 ### dev
 
-    docker build -t static-server:dev --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` --build-arg UPLOAD_DIRECTORY=/tmp/uploads -f ./Dockerfile ..
-    docker run --rm -it -p 8000:8000 -v /tmp/uploads:/tmp/uploads static-server:dev fastapi dev main.py --host 0.0.0.0
+    docker run --rm -it -p 8000:8000 --env-file docker/.env static-server fastapi dev main.py --host 0.0.0.0
 
 ### prod
 
-    docker build -t static-server:prod --build-arg USER_ID=`id -u` --build-arg GROUP_ID=`id -g` --build-arg UPLOAD_DIRECTORY=/tmp/uploads -f ./Dockerfile ..
-    docker run --rm -d -p 80:8000 -v /tmp/uploads:/tmp/uploads static-server:prod fastapi run main.py
+    docker run --rm -it -p 80:8000 --env-file docker/.env static-server
 
 ### clear
 
@@ -45,6 +45,7 @@ It will be configurable to save data on the host file system or to save data to 
     source DOWN.sh
 
 ## S3
+
     pip3 install -r src/aws/s3/requirements.txt
     python3 -m src.aws.s3.main
 

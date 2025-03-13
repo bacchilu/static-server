@@ -18,4 +18,6 @@ COPY ./src .
 ENV PATH="$PATH:/home/$USERNAME/.local/bin"
 RUN pip3 install -r requirements-lock.txt
 
+CMD ["fastapi", "run", "main.py"]
+
 EXPOSE 8000

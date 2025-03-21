@@ -1,0 +1,18 @@
+### Send File
+POST http://0.0.0.0:8000/xxx
+Accept: application/json
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="file"; filename="4.pdf"
+Content-Type: application/pdf
+
+< ./4.pdf
+--MyBoundary--
+
+### Get File
+GET http://0.0.0.0:8000/xxx/4.pdf
+
+### Remove File
+DELETE http://0.0.0.0:8000/xxx/4.pdf
+Accept: application/json

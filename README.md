@@ -25,7 +25,7 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
-    docker build -t bacchilu/static-server -f ./docker/Dockerfile .
+    docker build -t bacchilu/static-server -t bacchilu/static-server:0.0.1 -f ./docker/Dockerfile .
 
 ### dev
 

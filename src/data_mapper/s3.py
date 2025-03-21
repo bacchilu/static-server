@@ -3,6 +3,7 @@ import os
 from typing import IO
 
 from aws.aios3 import Bucket
+from data_gateway import StorageProtocol
 
 S3_BUCKET = os.getenv("S3_BUCKET", "life365")
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "XXXXXXXXXXXXXXXXXXXX")
@@ -12,7 +13,7 @@ AWS_SECRET_ACCESS_KEY = os.getenv(
 REGION_NAME = os.getenv("REGION_NAME", "eu-central-1")
 
 
-class S3:
+class S3(StorageProtocol):
     @staticmethod
     async def get(key: str):
         async with Bucket.create_obj(

@@ -25,7 +25,11 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
+### Deploy
+
     docker build -t bacchilu/static-server -t bacchilu/static-server:0.0.1 -f ./docker/Dockerfile .
+    docker push bacchilu/static-server:0.0.1
+    docker push bacchilu/static-server
 
 ### dev
 
@@ -35,15 +39,7 @@ It will be configurable to save data on the host file system or to save data to 
 
     docker run --rm -it -p 80:8000 --env-file docker/.env bacchilu/static-server
 
-### Deploy DockerHub
-
-    docker push bacchilu/static-server
-
 ### clear
-
-    docker image prune -a
-
----
 
     source UP.sh [DEV | PROD]
     source DOWN.sh

@@ -1,10 +1,12 @@
 import os
 from typing import IO
 
+from data_gateway import StorageProtocol
+
 UPLOAD_DIRECTORY = os.getenv("UPLOAD_DIRECTORY", "/tmp")
 
 
-class FS:
+class FS(StorageProtocol):
     @staticmethod
     async def get(filename: str):
         file_path = os.path.join(UPLOAD_DIRECTORY, filename)

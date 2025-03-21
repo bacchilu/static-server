@@ -4,6 +4,8 @@ I want to implement a configurable static server with a very simple API to store
 
 It will be configurable to save data on the host file system or to save data to AWS S3.
 
+[DockerHub](https://hub.docker.com/repository/docker/bacchilu/static-server)
+
 ## start (dev mod)
 
     python3 -m venv ENV

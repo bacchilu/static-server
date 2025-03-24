@@ -1,5 +1,5 @@
 ### Send File
-POST http://0.0.0.0:8000/xxx
+POST http://0.0.0.0:8000/xxx/yyy
 Accept: application/json
 Content-Type: multipart/form-data; boundary=MyBoundary
 
@@ -11,8 +11,8 @@ Content-Type: application/pdf
 --MyBoundary--
 
 ### Get File        
-GET http://0.0.0.0:8000/xxx/4.pdf
+GET http://0.0.0.0:8000/xxx/yyy/4.pdf
 
 ### Remove File
-DELETE http://0.0.0.0:8000/xxx/4.pdf
+DELETE http://0.0.0.0:8000/xxx/yyy/4.pdf
 Accept: application/json

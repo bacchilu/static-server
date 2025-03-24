@@ -3,11 +3,12 @@ import os
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import Response
 
-from get_storage import getStorage
+from data_mapper import getStorage
 from interactor import Application
 from utils import guess_content_type
 
-application = Application(getStorage())
+storage = getStorage()
+application = Application(storage)
 
 engine = FastAPI()
 

@@ -56,7 +56,6 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## TODO
 
-- Refactoring: check in we need a entity or a better main separated from the controller
 - Better json results and error messages
 - File System Storage
 - JWT Authentication

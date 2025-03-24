@@ -56,6 +56,6 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## TODO
 
-- Better json results and error messages
 - File System Storage
+- Better Bucket management
 - JWT Authentication

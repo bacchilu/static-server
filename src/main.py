@@ -1,6 +1,6 @@
 import os
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, UploadFile, status
 from fastapi.responses import Response
 
 from data_mapper import getStorage
@@ -13,11 +13,12 @@ application = Application(storage)
 engine = FastAPI()
 
 
-@engine.post("/{key:path}")
-async def upload_file(key: str, file: UploadFile = File(...)):
+@engine.post("/{key:path}", status_code=status.HTTP_201_CREATED)
+async def upload_file(response: Response, key: str, file: UploadFile = File(...)):
     assert file.filename is not None
     try:
         file_location = await application.upload_file(file.filename, file.file, key)
+        response.headers["Location"] = file_location
         return {"filename": file.filename, "location": file_location}
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -40,6 +41,6 @@ async def get_file(key: str, filename: str):
 async def delete_file_with_path(key: str):
     try:
         await application.delete_file(key)
-        return {"filename": key}
+        return {"message": "File deleted successfully"}
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

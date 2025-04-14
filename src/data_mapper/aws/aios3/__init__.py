@@ -45,3 +45,6 @@ class Bucket:
 
     async def delete_objects(self, key: str):
         await self.bucket.delete_objects(Delete={"Objects": [{"Key": key}]})
+
+    async def list_files(self, prefix=""):
+        return [obj.key async for obj in self.bucket.objects.filter(Prefix=prefix)]

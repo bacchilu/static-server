@@ -23,6 +23,7 @@ async def go():
         with io.BytesIO() as fp:
             await bucket.download_fileobj(fp, "TEST/test.py")
             print(fp.getvalue())
+        print(await bucket.list_files("TEST"))
         await bucket.delete_objects("TEST/test.py")
 
 

@@ -22,5 +22,5 @@ if __name__ == "__main__":
     with io.BytesIO() as fp:
         bucket.download_fileobj("TEST/test.py", fp)
         print(fp.getvalue())
-    print(bucket.list_files("TEST"))
+    print(list(bucket.list_files("TEST")))
     bucket.delete_objects("TEST/test.py")

@@ -1,4 +1,4 @@
-from typing import IO
+from typing import IO, Generator
 
 import magic
 from boto3.session import Session
@@ -43,7 +43,7 @@ class Bucket:
     def download_fileobj(self, key: str, fp: IO[bytes]):
         self.bucket.download_fileobj(key, fp)
 
-    def list_files(self, prefix=""):
+    def list_files(self, prefix="") -> Generator[str, None, None]:
         return (obj.key for obj in self.bucket.objects.filter(Prefix=prefix))
 
     def __str__(self):

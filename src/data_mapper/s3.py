@@ -1,6 +1,6 @@
 import io
 import os
-from typing import IO
+from typing import IO, Any, AsyncGenerator
 
 from data_gateway import StorageProtocol
 from data_mapper.aws.aios3 import Bucket
@@ -38,3 +38,8 @@ class S3(StorageProtocol):
     async def delete(key: str):
         async with get_bucket() as bucket:
             await bucket.delete_objects(key)
+
+    @staticmethod
+    async def list_files(key: str) -> AsyncGenerator[str, Any]:
+        async with get_bucket() as bucket:
+            return await bucket.list_files(key)

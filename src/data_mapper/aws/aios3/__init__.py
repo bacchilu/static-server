@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from typing import IO, AsyncGenerator
+from typing import IO
 
 import aioboto3
 import magic
@@ -46,5 +46,5 @@ class Bucket:
     async def delete_objects(self, key: str):
         await self.bucket.delete_objects(Delete={"Objects": [{"Key": key}]})
 
-    async def list_files(self, prefix="") -> AsyncGenerator[str, None]:
-        return (obj.key async for obj in self.bucket.objects.filter(Prefix=prefix))
+    async def list_files(self, prefix="") -> list[str]:
+        return [obj.key async for obj in self.bucket.objects.filter(Prefix=prefix)]

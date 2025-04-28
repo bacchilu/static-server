@@ -1,4 +1,4 @@
-from typing import IO, Any, AsyncGenerator, Protocol, runtime_checkable
+from typing import IO, Protocol, runtime_checkable
 
 from data_gateway import StorageProtocol
 
@@ -13,7 +13,7 @@ class ApplicationProtocol(Protocol):
 
     async def delete_file(self, key: str) -> None: ...
 
-    async def list_files(self, key: str) -> AsyncGenerator[str, Any]: ...
+    async def list_files(self, key: str) -> list[str]: ...
 
 
 def check_key(key: str):
@@ -49,7 +49,7 @@ class Application(ApplicationProtocol):
             raise Exception("Invalid key")
         await self.storage.delete(key)
 
-    async def list_files(self, key: str) -> AsyncGenerator[str, Any]:
+    async def list_files(self, key: str) -> list[str]:
         if ".." in key or key.startswith("/"):
             raise Exception("Invalid key")
         return await self.storage.list_files(key)

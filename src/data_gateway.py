@@ -1,4 +1,4 @@
-from typing import IO, Any, AsyncGenerator, Protocol, runtime_checkable
+from typing import IO, Protocol, runtime_checkable
 
 
 @runtime_checkable
@@ -9,4 +9,4 @@ class StorageProtocol(Protocol):
 
     async def delete(self, key: str) -> None: ...
 
-    async def list_files(self, key: str) -> AsyncGenerator[str, Any]: ...
+    async def list_files(self, key: str) -> list[str]: ...

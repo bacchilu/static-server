@@ -27,8 +27,7 @@ async def upload_file(response: Response, key: str, file: UploadFile = File(...)
 @engine.get("/{key:path}/")
 async def list_files(key: str):
     try:
-        res = await application.list_files(key)
-        return [item async for item in res]
+        return await application.list_files(key)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 

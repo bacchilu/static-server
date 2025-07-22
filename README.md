@@ -47,12 +47,15 @@ It will be configurable to save data on the host file system or to save data to 
     source DOWN.sh
 
 ## S3
+    cd src/data_mapper/aws
+    python3 -m venv ENV
+    source ENV/bin/activate
 
-    pip3 install -r src/aws/s3/requirements.txt
-    python3 -m src.data_mapper.aws.s3.main
+    pip3 install -r s3/requirements.txt
+    python3 -m s3.main
 
-    pip3 install -r src/aws/aios3/requirements.txt
-    python3 -m src.data_mapper.aws.aios3.main
+    pip3 install -r aios3/requirements.txt
+    python3 -m aios3.main
 
 ## TODO
 

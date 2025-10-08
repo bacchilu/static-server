@@ -8,8 +8,8 @@ UPLOAD_DIRECTORY = os.getenv("UPLOAD_DIRECTORY", "/tmp")
 
 class FS(StorageProtocol):
     @staticmethod
-    async def get(filename: str):
-        file_path = os.path.join(UPLOAD_DIRECTORY, filename)
+    async def get(key: str) -> bytes:
+        file_path = os.path.join(UPLOAD_DIRECTORY, key)
         if not os.path.isfile(file_path):
             raise Exception("File not found")
         with open(file_path, "rb") as fp:

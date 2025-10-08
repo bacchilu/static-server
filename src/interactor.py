@@ -35,9 +35,9 @@ class Application(ApplicationProtocol):
     def __init__(self, storage: StorageProtocol):
         self.storage = storage
 
-    async def upload_file(self, filename: str, file: IO[bytes], key: str) -> str:
-        key = check_key(key)
-        return await self.storage.upload(filename, file, key)
+    async def upload_file(self, filename: str, file: IO[bytes], sub_path: str) -> str:
+        sub_path = check_key(sub_path)
+        return await self.storage.upload(filename, file, sub_path)
 
     async def get_file(self, key: str) -> bytes:
         if ".." in key or key.startswith("/"):

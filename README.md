@@ -10,7 +10,7 @@ It will be configurable to save data on the host file system or to save data to 
 
     python3 -m venv ENV
     source ENV/bin/activate
-    pip3 install -r src/app/requirements-lock.txt
+    pip3 install -r requirements-lock.txt
 
     export $(grep -v '^#' docker/.env | xargs)
     fastapi dev src/app/main.py
@@ -43,7 +43,7 @@ or
 
     python3 -m venv ENV
     source ENV/bin/activate
-    pip3 install -r src/app/requirements.txt
+    pip3 install -r requirements.txt
     fastapi dev src/app/main.py --host 0.0.0.0
 
 ### prod

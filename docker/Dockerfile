@@ -13,10 +13,13 @@ USER ${USERNAME}
 
 WORKDIR /app
 
-COPY ./src .
+COPY ./requirements-lock.txt ./requirements-lock.txt
+COPY ./requirements.txt ./requirements.txt
 
 ENV PATH="$PATH:/home/$USERNAME/.local/bin"
-RUN pip3 install -r app/requirements-lock.txt
+RUN pip3 install -r requirements-lock.txt
+
+COPY ./src .
 
 CMD ["fastapi", "run", "app/main.py"]
 

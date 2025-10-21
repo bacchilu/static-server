@@ -1,7 +1,7 @@
 import os
 from typing import IO
 
-from data_gateway import StorageProtocol
+from ..data_gateway import StorageProtocol
 
 UPLOAD_DIRECTORY = os.getenv("UPLOAD_DIRECTORY", "/tmp")
 

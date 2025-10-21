@@ -2,7 +2,7 @@ import io
 import os
 from typing import IO
 
-from data_gateway import StorageProtocol
+from ..data_gateway import StorageProtocol
 from libs.aws.aios3 import Bucket
 
 S3_BUCKET = os.getenv("S3_BUCKET", "life365")

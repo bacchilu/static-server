@@ -18,7 +18,7 @@ services:
     volumes:
       - ../src:/app
       - ${UPLOAD_DIRECTORY}:/tmp/uploads
-    command: fastapi dev main.py --host 0.0.0.0
+    command: fastapi dev app/main.py --host 0.0.0.0
 
   prod:
     build:
@@ -38,4 +38,4 @@ services:
       - REGION_NAME=${REGION_NAME}
     volumes:
       - ${UPLOAD_DIRECTORY}:/tmp/uploads
-    command: fastapi run main.py
+    command: fastapi run app/main.py

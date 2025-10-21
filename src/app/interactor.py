@@ -1,6 +1,6 @@
 from typing import IO, Protocol, runtime_checkable
 
-from data_gateway import StorageProtocol
+from .data_gateway import StorageProtocol
 
 
 @runtime_checkable

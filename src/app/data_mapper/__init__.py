@@ -1,9 +1,9 @@
 import os
 from enum import Enum
 
-from data_gateway import StorageProtocol
-from data_mapper.fs import FS
-from data_mapper.s3 import S3
+from ..data_gateway import StorageProtocol
+from .fs import FS
+from .s3 import S3
 
 
 class StorageEnum(str, Enum):

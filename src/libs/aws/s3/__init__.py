@@ -1,3 +1,6 @@
+__all__ = ["Bucket"]
+
+
 from typing import IO, Generator
 
 import magic

@@ -4,15 +4,18 @@ Accept: application/json
 Content-Type: multipart/form-data; boundary=MyBoundary
 
 --MyBoundary
-Content-Disposition: form-data; name="file"; filename="4.pdf"
-Content-Type: application/pdf
+Content-Disposition: form-data; name="file"; filename="dante.txt"
+Content-Type: text/plain
 
-< ./4.pdf
+< ./dante.txt
 --MyBoundary--
 
-### Get File        
-GET http://0.0.0.0:8000/xxx/yyy/4.pdf
+### Get File
+GET http://0.0.0.0:8000/xxx/yyy/dante.txt
+
+### List Files
+GET http://0.0.0.0:8000/xxx/yyy/
 
 ### Remove File
-DELETE http://0.0.0.0:8000/xxx/yyy/4.pdf
-Accept: application/json
+DELETE http://0.0.0.0:8000/xxx/yyy/dante.txt
+Accept: text/plain

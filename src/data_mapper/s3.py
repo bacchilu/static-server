@@ -3,7 +3,7 @@ import os
 from typing import IO
 
 from data_gateway import StorageProtocol
-from data_mapper.aws.aios3 import Bucket
+from libs.aws.aios3 import Bucket
 
 S3_BUCKET = os.getenv("S3_BUCKET", "life365")
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "XXXXXXXXXXXXXXXXXXXX")

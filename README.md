@@ -15,6 +15,8 @@ It will be configurable to save data on the host file system or to save data to 
     export $(grep -v '^#' docker/.env | xargs)
     fastapi dev src/main.py
 
+## sample requests
+
     curl -X 'POST' \
     'http://0.0.0.0:8000/xxx' \
     -H 'accept: application/json' \
@@ -37,6 +39,13 @@ It will be configurable to save data on the host file system or to save data to 
 
     docker run --rm -it -p 8000:8000 --env-file docker/.env bacchilu/static-server fastapi dev main.py --host 0.0.0.0
 
+or
+
+    python3 -m venv ENV
+    source ENV/bin/activate
+    pip3 install -r src/requirements
+    fastapi dev src/main.py --host 0.0.0.0
+
 ### prod
 
     docker run --rm -it -p 80:8000 --env-file docker/.env bacchilu/static-server
@@ -47,7 +56,7 @@ It will be configurable to save data on the host file system or to save data to 
     source DOWN.sh
 
 ## S3
-    cd src/data_mapper/aws
+    cd src/libs/aws
     python3 -m venv ENV
     source ENV/bin/activate
 

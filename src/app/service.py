@@ -1,22 +1,11 @@
-from typing import IO, Protocol, runtime_checkable
+__all__ = ["Service"]
+
+from typing import IO
 
 from .data_gateway import StorageProtocol
 
 
-@runtime_checkable
-class ApplicationProtocol(Protocol):
-    async def upload_file(
-        self, filename: str, file: IO[bytes], sub_path: str
-    ) -> str: ...
-
-    async def get_file(self, key: str) -> bytes: ...
-
-    async def delete_file(self, key: str) -> None: ...
-
-    async def list_files(self, key: str) -> list[str]: ...
-
-
-def check_key(key: str):
+def check_key(key: str) -> str:
     key = key.strip()
     if len(key) == 0:
         raise Exception("Key cannot be empty.")
@@ -31,7 +20,7 @@ def check_key(key: str):
     return key
 
 
-class Application(ApplicationProtocol):
+class Service:
     def __init__(self, storage: StorageProtocol):
         self.storage = storage
 

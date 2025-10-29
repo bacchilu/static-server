@@ -1,3 +1,5 @@
+__all__ = ["FS"]
+
 import os
 from typing import IO
 

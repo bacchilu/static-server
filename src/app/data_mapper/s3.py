@@ -1,9 +1,12 @@
+__all__ = ["S3"]
+
 import io
 import os
 from typing import IO
 
-from ..data_gateway import StorageProtocol
 from libs.aws.aios3 import Bucket
+
+from ..data_gateway import StorageProtocol
 
 S3_BUCKET = os.getenv("S3_BUCKET", "life365")
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "XXXXXXXXXXXXXXXXXXXX")

@@ -7,6 +7,7 @@ import magic
 
 from .data_gateway import StorageProtocol
 from .data_mapper.fs import FS
+from .data_mapper.mem import Memory
 from .data_mapper.s3 import S3
 
 
@@ -19,6 +20,7 @@ def guess_content_type(data: bytes):
 class StorageEnum(str, Enum):
     FS = "FS"
     S3 = "S3"
+    MEMORY = "MEMORY"
 
 
 def getConfiguredStorage() -> StorageProtocol:
@@ -26,5 +28,6 @@ def getConfiguredStorage() -> StorageProtocol:
     storages: dict[StorageEnum, StorageProtocol] = {
         StorageEnum.FS: FS,
         StorageEnum.S3: S3,
+        StorageEnum.MEMORY: Memory,
     }
     return storages[storage_type]

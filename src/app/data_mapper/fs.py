@@ -1,6 +1,7 @@
 __all__ = ["FS"]
 
 import os
+from pathlib import Path
 from typing import IO
 
 from ..data_gateway import StorageProtocol
@@ -18,7 +19,7 @@ class FS(StorageProtocol):
             return fp.read()
 
     @staticmethod
-    async def upload(filename: str, file: IO[bytes], sub_path: str):
+    async def upload(filename: str, file: IO[bytes], sub_path: str) -> str:
         target_directory = os.path.join(UPLOAD_DIRECTORY, sub_path)
         os.makedirs(target_directory, exist_ok=True)
 
@@ -28,6 +29,11 @@ class FS(StorageProtocol):
         return file_location
 
     @staticmethod
-    async def delete(key: str):
+    async def delete(key: str) -> None:
         file_path = os.path.join(UPLOAD_DIRECTORY, key)
         os.remove(file_path)
+
+    @staticmethod
+    async def list_files(key: str) -> list[str]:
+        path = Path(os.path.join(UPLOAD_DIRECTORY, key))
+        return [os.path.join(key, f.name) for f in path.iterdir() if f.is_file()]

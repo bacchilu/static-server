@@ -31,14 +31,14 @@ class S3(StorageProtocol):
                 return fp.getvalue()
 
     @staticmethod
-    async def upload(filename: str, file: IO[bytes], sub_path: str):
+    async def upload(filename: str, file: IO[bytes], sub_path: str) -> str:
         async with get_bucket() as bucket:
             file.seek(0)
             await bucket.upload_fileobj(file, f"{sub_path}/{filename}")
             return f"https://{S3_BUCKET}.s3.eu-central-1.amazonaws.com/{sub_path}/{filename}"
 
     @staticmethod
-    async def delete(key: str):
+    async def delete(key: str) -> None:
         async with get_bucket() as bucket:
             await bucket.delete_objects(key)
 

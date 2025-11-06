@@ -13,7 +13,7 @@ It will be configurable to save data on the host file system or to save data to 
     pip3 install -r requirements-lock.txt
 
     export $(grep -v '^#' docker/.env | xargs)
-    fastapi dev src/app/main.py
+    fastapi dev src/main.py
 
 ## sample requests
 
@@ -37,14 +37,14 @@ It will be configurable to save data on the host file system or to save data to 
 
 ### dev
 
-    docker run --rm -it -p 8000:8000 --env-file docker/.env bacchilu/static-server fastapi dev app/main.py --host 0.0.0.0
+    docker run --rm -it -p 8000:8000 --env-file docker/.env bacchilu/static-server fastapi dev main.py --host 0.0.0.0
 
 or
 
     python3 -m venv ENV
     source ENV/bin/activate
     pip3 install -r requirements.txt
-    fastapi dev src/app/main.py --host 0.0.0.0
+    fastapi dev src/main.py --host 0.0.0.0
 
 ### prod
 
@@ -56,6 +56,7 @@ or
     source DOWN.sh
 
 ## S3
+
     cd src/libs/aws
     python3 -m venv ENV
     source ENV/bin/activate

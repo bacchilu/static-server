@@ -20,6 +20,6 @@ RUN pip3 install -r requirements.txt
 
 COPY ./src .
 
-CMD ["fastapi", "run", "app/main.py"]
+CMD ["fastapi", "run", "main.py"]
 
 EXPOSE 8000

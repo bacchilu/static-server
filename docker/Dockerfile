@@ -13,11 +13,10 @@ USER ${USERNAME}
 
 WORKDIR /app
 
-COPY ./requirements-lock.txt ./requirements-lock.txt
 COPY ./requirements.txt ./requirements.txt
 
 ENV PATH="$PATH:/home/$USERNAME/.local/bin"
-RUN pip3 install -r requirements-lock.txt
+RUN pip3 install -r requirements.txt
 
 COPY ./src .
 

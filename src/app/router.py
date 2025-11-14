@@ -1,7 +1,5 @@
 __all__ = ["router"]
 
-import os
-
 from fastapi import APIRouter, File, HTTPException, Response, UploadFile, status
 
 from .storage_service import StorageService

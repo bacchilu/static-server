@@ -4,7 +4,7 @@ I want to implement a configurable static server with a very simple API to store
 
 It will be configurable to save data on the host file system or to save data to AWS S3.
 
-[DockerHub](https://hub.docker.com/r/bacchilu/static-server)
+The current latest version is [`static-server:3.0.3`](https://hub.docker.com/r/bacchilu/static-server).
 
 ## start (dev mod)
 
@@ -29,11 +29,10 @@ It will be configurable to save data on the host file system or to save data to 
 
 ## Docker
 
-### Deploy
+### Deploy to Docker Hub
 
-    docker build -t bacchilu/static-server -t bacchilu/static-server:3.0.3 -f ./docker/Dockerfile .
-    docker push bacchilu/static-server
-    docker push bacchilu/static-server:3.0.3
+    cd docker
+    source DOCKER_HUB.sh
 
 ### dev
 
@@ -70,9 +69,3 @@ or
 
     pip3 install -r aios3/requirements.txt
     python3 -m aios3.main
-
-## TODO
-
-- File System Storage
-- Better Bucket management
-- JWT Authentication

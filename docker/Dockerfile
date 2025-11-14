@@ -20,7 +20,6 @@ RUN pip3 install -r requirements-lock.txt
 
 COPY ./src .
 
-ENV PYTHONDONTWRITEBYTECODE=1
 CMD ["fastapi", "run", "main.py"]
 
 EXPOSE 8000

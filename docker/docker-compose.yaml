@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     environment:
       - UPLOAD_DIRECTORY=/tmp/uploads
+      - PYTHONDONTWRITEBYTECODE=1
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - STORAGE=${STORAGE}
@@ -31,6 +32,7 @@ services:
       - "80:8000"
     environment:
       - UPLOAD_DIRECTORY=/tmp/uploads
+      - PYTHONDONTWRITEBYTECODE=0
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - STORAGE=${STORAGE}

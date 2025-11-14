@@ -34,10 +34,10 @@ async def list_files(key: str):
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.get("/{key:path}/{filename}")
-async def get_file(key: str, filename: str):
+@router.get("/{key:path}")
+async def get_file(key: str):
     try:
-        file_data = await storage_service.get_file(os.path.join(key, filename))
+        file_data = await storage_service.get_file(key)
         return Response(
             file_data,
             media_type=guess_content_type(file_data),

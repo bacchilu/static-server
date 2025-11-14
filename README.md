@@ -37,7 +37,9 @@ It will be configurable to save data on the host file system or to save data to 
 
 ### dev
 
-    docker run --rm -it -p 8000:8000 --env-file docker/.env bacchilu/static-server fastapi dev main.py --host 0.0.0.0
+    cd docker
+    source PREPARE.sh
+    docker compose up dev
 
 or
 
@@ -48,12 +50,14 @@ or
 
 ### prod
 
-    docker run --rm -it -p 80:8000 --env-file docker/.env bacchilu/static-server
+    cd docker
+    source PREPARE.sh
+    docker compose up -d prod
 
 ### clear
 
-    source UP.sh [DEV | PROD]
-    source DOWN.sh
+    cd docker
+    docker compose down
 
 ## S3
 

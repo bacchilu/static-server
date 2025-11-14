@@ -2,7 +2,6 @@
 
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
-export $(grep -v '^#' .env | xargs)
 
 create_directories() {
     mkdir -p $UPLOAD_DIRECTORY

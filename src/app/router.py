@@ -14,13 +14,14 @@ storage_service = StorageService(storage)
 router = APIRouter()
 
 
-@router.post("/{key:path}", status_code=status.HTTP_201_CREATED)
-async def upload_file(response: Response, key: str, file: UploadFile = File(...)):
-    assert file.filename is not None
+@router.post("/{key:path}/{filename}", status_code=status.HTTP_201_CREATED)
+async def upload_file(
+    response: Response, key: str, filename: str, file: UploadFile = File(...)
+):
     try:
-        file_location = await storage_service.upload_file(file.filename, file.file, key)
+        file_location = await storage_service.upload_file(filename, file.file, key)
         response.headers["Location"] = file_location
-        return {"filename": file.filename, "location": file_location}
+        return {"filename": filename, "location": file_location}
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 

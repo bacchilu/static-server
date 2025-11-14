@@ -18,7 +18,7 @@ It will be configurable to save data on the host file system or to save data to 
 ## sample requests
 
     curl -X 'POST' \
-    'http://0.0.0.0:8000/xxx' \
+    'http://0.0.0.0:8000/xxx/yyy/dante.txt' \
     -H 'accept: application/json' \
     -H 'Content-Type: multipart/form-data' \
     -F 'file=@KEN2025_ticket_31275276.pdf;type=application/pdf'
@@ -31,9 +31,9 @@ It will be configurable to save data on the host file system or to save data to 
 
 ### Deploy
 
-    docker build -t bacchilu/static-server -t bacchilu/static-server:3.0.2 -f ./docker/Dockerfile .
+    docker build -t bacchilu/static-server -t bacchilu/static-server:3.0.3 -f ./docker/Dockerfile .
     docker push bacchilu/static-server
-    docker push bacchilu/static-server:3.0.2
+    docker push bacchilu/static-server:3.0.3
 
 ### dev
 

@@ -1,5 +1,7 @@
 __all__ = ["router"]
 
+import os
+
 from fastapi import APIRouter, File, HTTPException, Response, UploadFile, status
 
 from .storage_service import StorageService
@@ -19,7 +21,12 @@ async def upload_file(
     try:
         file_location = await storage_service.upload_file(filename, file.file, key)
         response.headers["Location"] = file_location
-        return {"filename": filename, "location": file_location}
+        file_path = os.path.join(key, filename)
+        return {
+            "file_path": file_path,
+            "location": file_location,
+            "message": "File uploaded successfully",
+        }
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -48,6 +55,6 @@ async def get_file(key: str):
 async def delete_file_with_path(key: str):
     try:
         await storage_service.delete_file(key)
-        return {"message": "File deleted successfully"}
+        return {"file_path": key, "message": "File deleted successfully"}
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

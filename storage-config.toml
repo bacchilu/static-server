@@ -1,0 +1,13 @@
+[storage.fs]
+enabled = false
+upload_directory = "/tmp/uploads/life365"
+
+[storage.s3]
+enabled = true
+bucket = "life365"
+region = "eu-central-1"
+access_key_id = "${AWS_ACCESS_KEY_ID}"
+secret_access_key = "${AWS_SECRET_ACCESS_KEY}"
+
+[storage.memory]
+enabled = false

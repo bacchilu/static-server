@@ -21,9 +21,8 @@ async def upload_file(
     try:
         file_location = await storage_service.upload_file(filename, file.file, key)
         response.headers["Location"] = file_location
-        file_path = os.path.join(key, filename)
         return {
-            "file_path": file_path,
+            "file_path": os.path.join(key, filename),
             "location": file_location,
             "message": "File uploaded successfully",
         }

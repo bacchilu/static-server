@@ -4,7 +4,7 @@ I want to implement a configurable static server with a very simple API to store
 
 It will be configurable to save data on the host file system or to save data to AWS S3.
 
-The current latest version is [`static-server:3.0.3`](https://hub.docker.com/r/bacchilu/static-server).
+The current latest version is [`static-server:3.0.5`](https://hub.docker.com/r/bacchilu/static-server).
 
 ## start (dev mod)
 

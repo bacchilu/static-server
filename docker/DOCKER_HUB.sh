@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TAG=3.0.5
+TAG=3.0.6
 
 docker build -t bacchilu/static-server -t bacchilu/static-server:$TAG -f ./Dockerfile ..
 docker push bacchilu/static-server

@@ -8,7 +8,7 @@ Three storage providers are supported:
 - FS: writes files to the host file system under `UPLOAD_DIRECTORY`; survives restarts as long as the volume persists.
 - S3: streams objects to an AWS S3 bucket using provided credentials/region; returned URLs point to the bucket.
 
-The current latest version is [`bacchilu/static-server:3.0.7`](https://hub.docker.com/r/bacchilu/static-server).
+The current latest version is [`bacchilu/static-server:3.0.8`](https://hub.docker.com/r/bacchilu/static-server).
 
 ## Configuration (.env)
 
@@ -93,4 +93,4 @@ or
 
 ## Running from Docker Hub
 
-    docker run --env-file docker/.env -p 8000:8000 bacchilu/static-server:3.0.7
+    docker run --env-file docker/.env -p 8000:8000 bacchilu/static-server:3.0.8

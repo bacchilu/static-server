@@ -29,8 +29,8 @@ Routes are relative to `/`:
 
 ## start (dev mod)
 
-    python3 -m venv ENV
-    source ENV/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
     pip3 install -r requirements-lock.txt
 
     export $(grep -v '^#' docker/.env | xargs)
